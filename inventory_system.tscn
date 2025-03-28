@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyigojo4vdlab"]
+
+[ext_resource type="Script" path="res://inventory_system.gd" id="1_lyxnd"]
+
+[node name="InventorySystem" type="Node"]
+script = ExtResource("1_lyxnd")

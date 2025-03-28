@@ -18,6 +18,7 @@ shape = SubResource("CapsuleShape3D_efe0y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.514029, 0)
 
 [node name="Camera3D" type="Camera3D" parent="head"]
+fov = 90.0
 
 [node name="RayCast3D" type="RayCast3D" parent="head/Camera3D"]
 transform = Transform3D(1.9355, 0, 0, 0, 0.0147284, -1.93544, 0, 1.93544, 0.0147284, 0, 0, -0.314634)
@@ -25,11 +26,11 @@ visible = false
 script = ExtResource("2_qje5k")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="head/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 0.975389, -0.220493, 0, 0.220493, 0.975389, 0, -0.838379, 0.321628)
+transform = Transform3D(1, 0, 0, 0, 0.975389, -0.220493, 0, 0.220493, 0.975389, 0, -0.838379, 0.529276)
 light_color = Color(0.894883, 0.914113, 0.851275, 1)
 light_energy = 10.0
 spot_range = 13.1738
-spot_angle = 34.794
+spot_angle = 39.8884
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_vvgpt")
