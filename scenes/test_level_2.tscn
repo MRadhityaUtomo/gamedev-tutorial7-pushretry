@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bilyl8hmomg4f"]
+[gd_scene load_steps=11 format=3 uid="uid://bilyl8hmomg4f"]
 
 [ext_resource type="PackedScene" uid="uid://cvwyasggoausn" path="res://scenes/player.tscn" id="1_ifnkh"]
 [ext_resource type="MeshLibrary" uid="uid://ddvhvveo845s6" path="res://assets/tilesets/tileset.tres" id="2_wo420"]
 [ext_resource type="PackedScene" uid="uid://dnvc8odafgsaf" path="res://scenes/key_2.tscn" id="3_g4chs"]
+[ext_resource type="AudioStream" uid="uid://d3eoe7r4acyhm" path="res://assets/audio/creature-in-the-sewer-17657.mp3" id="3_rq37m"]
 [ext_resource type="PackedScene" uid="uid://f3lbu0exjuy0" path="res://inventoryScripts/test_cube.tscn" id="4_hmdu8"]
+[ext_resource type="AudioStream" uid="uid://dbhc8602bxeb0" path="res://assets/audio/buzzing-sound-271564.mp3" id="5_0tepj"]
 [ext_resource type="Texture2D" uid="uid://blrxb8rklg2y7" path="res://assets/Illustration36.png" id="5_fy0fy"]
 [ext_resource type="Script" path="res://scenes/winarealevel2.gd" id="5_ids43"]
 
@@ -49,8 +51,20 @@ light_size = 100.0
 [node name="player" parent="." instance=ExtResource("1_ifnkh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
+[node name="BackgroundAudio" type="AudioStreamPlayer3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+stream = ExtResource("3_rq37m")
+volume_db = 15.0
+autoplay = true
+
 [node name="key2" parent="." instance=ExtResource("3_g4chs")]
 transform = Transform3D(-0.0705573, 0, 0.997508, 0, 1, 0, -0.997508, 0, -0.0705573, -55.2368, 1.11237, -11.8411)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="key2"]
+stream = ExtResource("5_0tepj")
+volume_db = 10.0
+unit_size = 4.0
+autoplay = true
 
 [node name="TestCube" parent="." instance=ExtResource("4_hmdu8")]
 transform = Transform3D(1, 0, 0, 0, 0.975821, 0.218569, 0, -0.218569, 0.975821, -10.4637, 1.08761, -24.0784)
