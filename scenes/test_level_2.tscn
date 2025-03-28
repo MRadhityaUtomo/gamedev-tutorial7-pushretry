@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bilyl8hmomg4f"]
+[gd_scene load_steps=9 format=3 uid="uid://bilyl8hmomg4f"]
 
 [ext_resource type="PackedScene" uid="uid://cvwyasggoausn" path="res://scenes/player.tscn" id="1_ifnkh"]
 [ext_resource type="MeshLibrary" uid="uid://ddvhvveo845s6" path="res://assets/tilesets/tileset.tres" id="2_wo420"]
+[ext_resource type="PackedScene" uid="uid://dnvc8odafgsaf" path="res://scenes/key_2.tscn" id="3_g4chs"]
+[ext_resource type="PackedScene" uid="uid://f3lbu0exjuy0" path="res://inventoryScripts/test_cube.tscn" id="4_hmdu8"]
+[ext_resource type="Texture2D" uid="uid://blrxb8rklg2y7" path="res://assets/Illustration36.png" id="5_fy0fy"]
+[ext_resource type="Script" path="res://scenes/winarealevel2.gd" id="5_ids43"]
 
 [sub_resource type="Environment" id="Environment_j8cln"]
 ambient_light_source = 3
@@ -12,6 +16,9 @@ fog_enabled = true
 fog_light_color = Color(0.4263, 0.87, 0.81084, 1)
 fog_light_energy = 0.05
 fog_density = 0.08
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jh8m0"]
+radius = 2.55291
 
 [node name="TestLevel2" type="Node3D"]
 
@@ -41,3 +48,22 @@ light_size = 100.0
 
 [node name="player" parent="." instance=ExtResource("1_ifnkh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="key2" parent="." instance=ExtResource("3_g4chs")]
+transform = Transform3D(-0.0705573, 0, 0.997508, 0, 1, 0, -0.997508, 0, -0.0705573, -55.2368, 0.487725, -11.8411)
+
+[node name="TestCube" parent="." instance=ExtResource("4_hmdu8")]
+transform = Transform3D(1, 0, 0, 0, 0.975821, 0.218569, 0, -0.218569, 0.975821, -10.4637, 1.08761, -24.0784)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.998469, 0, -0.0553161, 0, 1, 0, 0.0553161, 0, 0.998469, 27.1846, 0.846849, -15.8823)
+script = ExtResource("5_ids43")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_jh8m0")
+
+[node name="Sprite3D" type="Sprite3D" parent="Area3D"]
+transform = Transform3D(0.0895663, 0, -0.0847905, 0, 0.123335, 0, 0.0847905, 0, 0.0895663, 0, 0, 0)
+texture = ExtResource("5_fy0fy")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]

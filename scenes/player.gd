@@ -8,15 +8,20 @@ extends CharacterBody3D
 @export var jump_power: float = 5.0
 @export var mouse_sensitivity: float = 0.65
 @export var crouch_ratio: float = 0.01  # How much to lower when crouching (50% of original height)
-@export var crouch_transition_speed: float = 5.0  
+@export var crouch_transition_speed: float = 10.0  
 
 @onready var head: Node3D = $head  # Move head instead of camera
 @onready var camera: Camera3D = $head/Camera3D
+
+var idle_bob_speed := 0
+var idle_bob_amount := 0.00
+var bob_time := 0.0 
 
 var camera_x_rotation: float = 0.0
 var is_crouching: bool = false
 var original_head_height: float  
 var target_head_height: float  
+var hasKey = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -79,3 +84,17 @@ func _physics_process(delta):
 	head.position.y = lerp(head.position.y, target_head_height, crouch_transition_speed * delta)
 
 	move_and_slide()
+	
+#func _process(delta: float) -> void:
+	#camera_bob(delta)
+#
+#func camera_bob(delta: float) -> void:
+	#original_head_height = head.position.y  # Store original head height
+	#target_head_height = original_head_height
+	#if is_on_floor() and velocity.length() > 0:
+		#bob_time += delta * (16 if Input.is_action_pressed("shift") else 10)
+		#
+		#head.position.y = 0.6 + sin(bob_time) * (0.10 if Input.is_action_pressed("shift") else 0.06)
+	#else:
+		#bob_time += delta * idle_bob_speed
+		#head.position.y = 0.6 + sin(bob_time) * idle_bob_amount

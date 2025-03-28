@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://dby17jdkabwfp"]
+
+[ext_resource type="Script" path="res://scenes/key.gd" id="1_psv7k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7erj8"]
+size = Vector3(1, 2.6073, 1)
+
+[node name="ObjKey" type="Node3D"]
+
+[node name="Key" type="CSGCombiner3D" parent="."]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Key"]
+transform = Transform3D(0.568655, 0, 0, 0, 0.568655, 0, 0, 0, 0.568655, 0, 1.18777, 0)
+radius = 0.1
+height = 3.0
+smooth_faces = false
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Key"]
+transform = Transform3D(0.762672, 0, 0, 0, -3.33375e-08, 0.762672, 0, -0.762672, -3.33375e-08, 0, 0, 0)
+height = 0.2
+smooth_faces = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Key"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.124583, -0.182739, 1.71313, 0)
+size = Vector3(0.482666, 0.536621, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Key/CSGBox3D"]
+transform = Transform3D(0.3, 0, 0, 0, 0.254568, 0, 0, 0, 1.61589, -0.0826162, -0.0943215, 0)
+operation = 2
+size = Vector3(1.31531, 1, 1)
+
+[node name="Area3D" type="Area3D" parent="."]
+script = ExtResource("1_psv7k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.80365, 0)
+shape = SubResource("BoxShape3D_7erj8")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]

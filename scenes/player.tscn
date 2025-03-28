@@ -1,10 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvwyasggoausn"]
+[gd_scene load_steps=11 format=3 uid="uid://cvwyasggoausn"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_5idvu"]
 [ext_resource type="Script" path="res://scenes/ray_cast_3d.gd" id="2_qje5k"]
+[ext_resource type="Script" path="res://playerInteractionScripts/PlayerInteractionHandler.gd" id="3_ee7r0"]
 [ext_resource type="AudioStream" uid="uid://bc2osjxqjw7r1" path="res://assets/audio/flashlight-switch-102792.mp3" id="3_ml5t4"]
+[ext_resource type="Script" path="res://inventoryScripts/ItemData.gd" id="4_aoj5e"]
+[ext_resource type="PackedScene" uid="uid://f3lbu0exjuy0" path="res://inventoryScripts/test_cube.tscn" id="5_6eyxp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_efe0y"]
+
+[sub_resource type="Resource" id="Resource_fbyf8"]
+script = ExtResource("4_aoj5e")
+ItemName = "TestCube"
+itemModelPrefab = ExtResource("5_6eyxp")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_12aqk"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vvgpt"]
 
@@ -21,8 +31,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.514029, 0)
 fov = 90.0
 
 [node name="RayCast3D" type="RayCast3D" parent="head/Camera3D"]
-transform = Transform3D(1.9355, 0, 0, 0, 0.0147284, -1.93544, 0, 1.93544, 0.0147284, 0, 0, -0.314634)
-visible = false
+transform = Transform3D(1.9355, 0, 0, 0, 1.9355, 0, 0, 0, 1.9355, 0, 0, -0.314634)
+target_position = Vector3(0, 0, -2)
+collide_with_areas = true
+debug_shape_custom_color = Color(0.891592, 0.0933503, 0.371826, 1)
 script = ExtResource("2_qje5k")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="head/Camera3D"]
@@ -32,6 +44,16 @@ light_energy = 10.0
 spot_range = 13.1738
 spot_angle = 39.8884
 
+[node name="InteractionArea" type="Area3D" parent="head"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_ee7r0")
+ItemTypes = Array[ExtResource("4_aoj5e")]([SubResource("Resource_fbyf8")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head/InteractionArea"]
+transform = Transform3D(1.47454, 0, 0, 0, 1.47454, 0, 0, 0, 3.46061, 0, 0, -2.12187)
+shape = SubResource("BoxShape3D_12aqk")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_vvgpt")
 
@@ -40,10 +62,5 @@ stream = ExtResource("3_ml5t4")
 max_db = 1.0
 pitch_scale = 2.0
 
-[node name="FrontRay" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.391454, 0)
-target_position = Vector3(0, 0, -3)
-
-[node name="BackRay" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.391454, 0)
-target_position = Vector3(0, 0, 3)
+[connection signal="body_entered" from="head/InteractionArea" to="head/InteractionArea" method="OnObjectEnteredArea"]
+[connection signal="body_exited" from="head/InteractionArea" to="head/InteractionArea" method="OnObjectExitedArea"]
