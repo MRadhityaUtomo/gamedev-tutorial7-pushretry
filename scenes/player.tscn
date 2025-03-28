@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvwyasggoausn"]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_5idvu"]
+[ext_resource type="Script" path="res://scenes/ray_cast_3d.gd" id="2_qje5k"]
+[ext_resource type="AudioStream" uid="uid://bc2osjxqjw7r1" path="res://assets/audio/flashlight-switch-102792.mp3" id="3_ml5t4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_efe0y"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_vvgpt"]
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_5idvu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_efe0y")
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.514029, 0)
+
+[node name="Camera3D" type="Camera3D" parent="head"]
+
+[node name="RayCast3D" type="RayCast3D" parent="head/Camera3D"]
+transform = Transform3D(1.9355, 0, 0, 0, 0.0147284, -1.93544, 0, 1.93544, 0.0147284, 0, 0, -0.314634)
+visible = false
+script = ExtResource("2_qje5k")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.975389, -0.220493, 0, 0.220493, 0.975389, 0, -0.838379, 0.321628)
+light_color = Color(0.894883, 0.914113, 0.851275, 1)
+light_energy = 10.0
+spot_range = 13.1738
+spot_angle = 34.794
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_vvgpt")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_ml5t4")
+max_db = 1.0
+pitch_scale = 2.0
+
+[node name="FrontRay" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.391454, 0)
+target_position = Vector3(0, 0, -3)
+
+[node name="BackRay" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.391454, 0)
+target_position = Vector3(0, 0, 3)

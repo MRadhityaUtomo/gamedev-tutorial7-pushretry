@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhvw5n8duiwxc"]
+
+[ext_resource type="Texture2D" uid="uid://dkaxow3or2gqw" path="res://assets/hq720.jpg" id="1_qx4b2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aij0l"]
+transparency = 1
+albedo_texture = ExtResource("1_qx4b2")
+
+[node name="ObjLamp" type="Node3D"]
+
+[node name="lamp" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.52179, 0)
+use_collision = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="lamp"]
+transform = Transform3D(0.7, 0, 0, 0, 0.0490411, 0, 0, 0, 0.7, 0, -0.00605583, 0)
+height = 2.49937
+smooth_faces = false
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="lamp"]
+transform = Transform3D(1, 0, 0, 0, 0.724008, 0, 0, 0, 1, 0, 0.739258, 0)
+radius = 0.0760264
+sides = 6
+smooth_faces = false
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="lamp"]
+transform = Transform3D(1, 0, 0, 0, 0.80887, 0, 0, 0, 1, 0.00748956, 1.02112, -0.0380273)
+polygon = PackedVector2Array(0, 0, 0, 1, 0.253525, 1.09113, 1, 0)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 8
+material = SubResource("StandardMaterial3D_aij0l")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="lamp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76721, 0)
+light_energy = 2.0

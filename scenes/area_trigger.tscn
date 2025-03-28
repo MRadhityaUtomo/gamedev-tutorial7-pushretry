@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmtcyib5w57uf"]
+
+[ext_resource type="Script" path="res://area_trigger.gd" id="1_03l6q"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_66h2v"]
+
+[node name="Area Trigger" type="Area3D"]
+script = ExtResource("1_03l6q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_66h2v")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

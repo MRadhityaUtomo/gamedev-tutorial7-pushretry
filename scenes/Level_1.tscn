@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://xdf5vfv6eb17"]
+
+[ext_resource type="PackedScene" uid="uid://cvwyasggoausn" path="res://scenes/player.tscn" id="1_jei14"]
+[ext_resource type="PackedScene" uid="uid://dcwlceq3grow5" path="res://scenes/World_1.tscn" id="2_eyree"]
+[ext_resource type="PackedScene" uid="uid://dhvw5n8duiwxc" path="res://scenes/obj_lamp.tscn" id="3_3sbet"]
+[ext_resource type="PackedScene" uid="uid://cmtcyib5w57uf" path="res://scenes/area_trigger.tscn" id="4_6jppo"]
+[ext_resource type="PackedScene" uid="uid://bidmv5t53mgqa" path="res://scenes/win_area.tscn" id="5_7jlop"]
+
+[node name="Level1" type="Node3D"]
+
+[node name="player" parent="." instance=ExtResource("1_jei14")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.571, 0, 0)
+
+[node name="World 1" parent="." instance=ExtResource("2_eyree")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9552, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.08284, 0)
+visible = false
+omni_range = 50.0
+
+[node name="ObjLamp" parent="." instance=ExtResource("3_3sbet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.166, -1.38131, 0)
+
+[node name="Area Trigger" parent="." instance=ExtResource("4_6jppo")]
+transform = Transform3D(3.38157, 0, 0, 0, 3.98217, 0, 0, 0, 11.0013, 0, -8.38959, 0)
+
+[node name="WinArea" parent="." instance=ExtResource("5_7jlop")]
+transform = Transform3D(7.62966, 0, 0, 0, 4.96978, 0, 0, 0, 6.20609, -22.1041, 0, 0)

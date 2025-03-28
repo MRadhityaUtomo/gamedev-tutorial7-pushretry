@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://65h4c0mrp6k7"]
 
 [ext_resource type="PackedScene" path="res://Scenes/Box.tscn" id="1"]
+[ext_resource type="Script" path="res://Scenes/Interactable.gd" id="2_7uw8p"]
 [ext_resource type="PackedScene" uid="uid://cvwyasggoausn" path="res://scenes/player.tscn" id="2_hdvh3"]
-[ext_resource type="Script" path="res://scenes/Interactable.gd" id="2_o0uvd"]
 [ext_resource type="Script" path="res://Scenes/Switch.gd" id="3_o6gjl"]
 
 [sub_resource type="StandardMaterial3D" id="3"]
@@ -68,7 +68,7 @@ omni_range = 50.0
 [node name="Switch" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 25.0375)
 mesh = SubResource("4")
-script = ExtResource("2_o0uvd")
+script = ExtResource("2_7uw8p")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Switch"]
 script = ExtResource("3_o6gjl")

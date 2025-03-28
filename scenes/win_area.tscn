@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bidmv5t53mgqa"]
+
+[ext_resource type="Script" path="res://win_area.gd" id="1_qp6hg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_50bvv"]
+
+[node name="WinArea" type="Area3D"]
+script = ExtResource("1_qp6hg")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_50bvv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dcwlceq3grow5"]
+
+[node name="World 1" type="Node3D"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="Room 1" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(50, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+use_collision = true
+flip_faces = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 30, 31.1567, 2.59556, 0)
+flip_faces = true
+size = Vector3(1, 0.754456, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(15, 0, 0, 0, 10, 0, 0, 0, 10, 0, -7.68805, 0)
+flip_faces = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.3615, 14.1244, -1.33136)
+light_energy = 8.0
+omni_range = 100.0
+
+[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D2"]
+transform = Transform3D(1.65413, 0, 0, 0, 1.65413, 0, 0, 0, 1.65413, -0.518925, -6.14941, 0)
+size = Vector3(3.70267, 1, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D2"]
+transform = Transform3D(1.65413, 0, 0, 0, 1.65413, 0, 0, 0, 1.65413, 5.15635, -6.14941, 0)
+size = Vector3(1.20032, 1, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D2"]
+transform = Transform3D(1.65413, 0, 0, 0, 1.65413, 0, 0, 0, 1.65413, -5.54421, -6.14941, 0)
+size = Vector3(1.20032, 1, 1)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14.6125, 0)
+light_energy = 5.0
+omni_range = 20.0
