@@ -7,10 +7,10 @@ extends CharacterBody3D
 @export var gravity: float = 12
 @export var jump_power: float = 5.0
 @export var mouse_sensitivity: float = 0.65
-@export var crouch_ratio: float = 0.01  # How much to lower when crouching (50% of original height)
+@export var crouch_ratio: float = 0.01  
 @export var crouch_transition_speed: float = 10.0  
 
-@onready var head: Node3D = $head  # Move head instead of camera
+@onready var head: Node3D = $head 
 @onready var camera: Camera3D = $head/Camera3D
 
 var idle_bob_speed := 0
@@ -25,7 +25,7 @@ var hasKey = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	original_head_height = head.position.y  # Store original head height
+	original_head_height = head.position.y
 	target_head_height = original_head_height
 
 func _input(event):
@@ -62,7 +62,6 @@ func _physics_process(delta):
 
 	movement_vector = movement_vector.normalized()
 
-	# Determine movement speed
 	var current_speed = speed
 	if Input.is_action_pressed("shift") and not is_crouching:
 		current_speed = sprint_speed
@@ -72,29 +71,25 @@ func _physics_process(delta):
 	velocity.x = lerp(velocity.x, movement_vector.x * current_speed, acceleration * delta)
 	velocity.z = lerp(velocity.z, movement_vector.z * current_speed, acceleration * delta)
 
-	# Apply gravity
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# Jumping (Disable jumping while crouching)
 	if Input.is_action_just_pressed("jump") and is_on_floor() and not is_crouching:
 		velocity.y = jump_power
 
-	# Smoothly transition head height when crouching
 	head.position.y = lerp(head.position.y, target_head_height, crouch_transition_speed * delta)
 
 	move_and_slide()
 	
-#func _process(delta: float) -> void:
-	#camera_bob(delta)
-#
-#func camera_bob(delta: float) -> void:
-	#original_head_height = head.position.y  # Store original head height
-	#target_head_height = original_head_height
-	#if is_on_floor() and velocity.length() > 0:
-		#bob_time += delta * (16 if Input.is_action_pressed("shift") else 10)
-		#
-		#head.position.y = 0.6 + sin(bob_time) * (0.10 if Input.is_action_pressed("shift") else 0.06)
-	#else:
-		#bob_time += delta * idle_bob_speed
-		#head.position.y = 0.6 + sin(bob_time) * idle_bob_amount
+func _process(delta: float) -> void:
+	camera_bob(delta)
+
+func camera_bob(delta: float) -> void:
+	var bob_offset := 0.0  
+	if is_on_floor() and velocity.length() > 0.1:  
+		bob_time += delta * (16 if Input.is_action_pressed("shift") else 10)
+		bob_offset = sin(bob_time) * (0.10 if Input.is_action_pressed("shift") else 0.06)
+	else:
+		bob_time = 0.0
+		bob_offset = lerp(bob_offset, 0.0, 10.0 * delta) 
+	head.position.y = lerp(head.position.y, target_head_height + bob_offset, crouch_transition_speed * delta)

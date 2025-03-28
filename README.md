@@ -22,6 +22,11 @@ Post tutorial added
     - walk over items to pickup, key item has area3d that handles logic.
     - press to interact and pickup cube, placed an area3d in front of player character and camera as a pickup radius or pseudo raycast3D.
 
+5. Animations and UI
+    - Added main menu ui to choose levels.
+    - Added player head bobbing effect.
+    - Added spinning and floating animation to the level 2 key object.
+
 Free references used:
 https://www.youtube.com/watch?v=hdBcn2rO6c8
 https://www.youtube.com/watch?v=XLjCmdy8jdw

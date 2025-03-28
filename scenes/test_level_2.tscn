@@ -50,7 +50,7 @@ light_size = 100.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="key2" parent="." instance=ExtResource("3_g4chs")]
-transform = Transform3D(-0.0705573, 0, 0.997508, 0, 1, 0, -0.997508, 0, -0.0705573, -55.2368, 0.487725, -11.8411)
+transform = Transform3D(-0.0705573, 0, 0.997508, 0, 1, 0, -0.997508, 0, -0.0705573, -55.2368, 1.11237, -11.8411)
 
 [node name="TestCube" parent="." instance=ExtResource("4_hmdu8")]
 transform = Transform3D(1, 0, 0, 0, 0.975821, 0.218569, 0, -0.218569, 0.975821, -10.4637, 1.08761, -24.0784)
